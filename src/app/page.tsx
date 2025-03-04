@@ -1,8 +1,7 @@
 export default function Home() {
   return (
-    <div className="">
-      <h1>This is home page</h1>
-      <p>Chenged by jaman shah</p>
+    <div className="font-bold">
+      <h1 className="text-center font-bold text-8xl">Home</h1>
     </div>
   );
 }
