@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = () => {
   return (
     <div className="relative h-screen">
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-black opacity-30 z-10 flex items-center justify-center">
+      <div className="absolute top-0 left-0 w-full h-2/3 bg-black opacity-30 z-10 flex items-center justify-center">
         <h1 className="text-white font-extrabold text-[50px] text-center">
           WELCOME TO OUR WEBSITE
         </h1>
