@@ -1,8 +1,11 @@
+import HeroSection from "@/components/HomePageComponents/HeroSection";
+import TourItemsSection from "@/components/HomePageComponents/TourItemsSection";
+
 export default function Home() {
   return (
-    <div className="">
-      <h1>This is home page</h1>
-      <p>Chenged by jaman shah</p>
+    <div className="font-bold">
+      <HeroSection />
+      <TourItemsSection />
     </div>
   );
 }
