@@ -1,6 +1,7 @@
 import React from "react";
-import ServicesCard from "./../cards/ServicesCard";
+
 import { Service } from "@/types/servicesType";
+import ServicesCard from "../cards/ServicesCard";
 
 const ServicesSection = async () => {
   // calling the services API

@@ -1,7 +1,12 @@
+import { Service } from "@/types/servicesType";
 import Image from "next/image";
 import React from "react";
 
-const ServicesCard = ({ service }) => {
+interface ServicesCardProps {
+  service: Service; // defining the type of service prop
+}
+
+const ServicesCard: React.FC<ServicesCardProps> = ({ service }) => {
   const { title, image, description, price } = service;
 
   return (

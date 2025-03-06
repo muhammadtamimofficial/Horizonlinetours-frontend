@@ -42,5 +42,49 @@
       "description": "Get your adrenaline pumping with a variety of thrilling adventure sports including bungee jumping, paragliding, and rock climbing.",
       "price": "$150"
     }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "message": "The Island Tour was absolutely amazing! The views were breathtaking, and the guides were knowledgeable. Highly recommend!",
+      "image": "https://randomuser.me/api/portraits/men/1.jpg",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "message": "I had an incredible time during the Mountain Adventure Tour. The hike was challenging but worth it for the incredible views at the top.",
+      "image": "https://randomuser.me/api/portraits/women/2.jpg",
+      "rating": 4
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "message": "The Safari Tour was a once-in-a-lifetime experience. Seeing the animals up close in their natural habitat was unforgettable.",
+      "image": "https://randomuser.me/api/portraits/women/3.jpg",
+      "rating": 5
+    },
+    {
+      "id": "4",
+      "name": "Bob Brown",
+      "message": "The Heritage Tour allowed me to learn so much about the local culture and history. I highly recommend it for history buffs!",
+      "image": "https://randomuser.me/api/portraits/men/4.jpg",
+      "rating": 4
+    },
+    {
+      "id": "5",
+      "name": "Chris Lee",
+      "message": "The Beachfront Tour was a dream come true. The beaches were pristine, and the water activities were so much fun!",
+      "image": "https://randomuser.me/api/portraits/men/5.jpg",
+      "rating": 5
+    },
+    {
+      "id": "6",
+      "name": "Sarah Wilson",
+      "message": "The Adventure Sports Tour was thrilling! I got to try bungee jumping and paragliding, which were both fantastic experiences.",
+      "image": "https://randomuser.me/api/portraits/women/6.jpg",
+      "rating": 4
+    }
   ]
 }

@@ -13,9 +13,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   // sidebar items
   const sidebarLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
     { href: "#services", label: "Services" },
-    { href: "/contact", label: "Contact" },
+    { href: "/testimonial", label: "Testimonial" },
   ];
 
   const handleScrollToServices = () => {
