@@ -14,9 +14,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   const sidebarLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
+    { href: "#services", label: "Services" },
     { href: "/contact", label: "Contact" },
   ];
+
+  const handleScrollToServices = () => {
+    // Scrolling to the services section smoothly
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -42,10 +50,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
 
         <ul className="mt-10 space-y-4 text-lg text-white font-bold">
           {sidebarLinks.map(({ href, label }) => (
-            <li key={href} className="hover:text-orange-500 cursor-pointer">
-              <Link onClick={toggleMenu} href={href}>
-                {label}
-              </Link>
+            <li
+              onClick={toggleMenu}
+              key={href}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              {href === "#services" ? (
+                <a onClick={handleScrollToServices}>{label}</a>
+              ) : (
+                <Link href={href}>{label}</Link>
+              )}
             </li>
           ))}
         </ul>

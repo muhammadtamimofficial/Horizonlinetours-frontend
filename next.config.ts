@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 import withVideos from "next-videos";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
   // Custom Webpack configuration
   webpack(config) {
     // Add custom rule for additional video formats if needed

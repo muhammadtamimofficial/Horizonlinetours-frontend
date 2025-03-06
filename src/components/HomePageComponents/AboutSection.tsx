@@ -3,7 +3,7 @@ import React from "react";
 
 const AboutSection = () => {
   return (
-    <div className="absolute top-160 flex flex-col md:flex-row items-center justify-between gap-4 my-8 px-2 md:px-4">
+    <div className=" flex flex-col md:flex-row items-center justify-between gap-4 my-8 px-2 md:px-4">
       {/* Image Section */}
       <div className="w-full md:w-1/2 flex justify-center">
         <Image

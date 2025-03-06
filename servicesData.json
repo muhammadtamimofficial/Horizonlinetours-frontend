@@ -1,0 +1,46 @@
+{
+  "services": [
+    {
+      "id": "1",
+      "title": "Island Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2020/12/YK/HM/JY/8118956/island-tour-service-1000x1000.jpg",
+      "description": "Explore beautiful island destinations, experience crystal-clear waters, and enjoy scenic views during your island tour.",
+      "price": "$500"
+    },
+    {
+      "id": "2",
+      "title": "Mountain Adventure Tour",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ygbKFwOdL2fJ1-2TI7xuo-ZtD5WI260U2Q&s",
+      "description": "Embark on an exciting mountain adventure, hike rugged terrains, and enjoy breathtaking panoramic views from the peak.",
+      "price": "$800"
+    },
+    {
+      "id": "3",
+      "title": "Safari Tour",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVUFSX8T0SC9q5rOlfZYV-Hpbk_Es2ewL9tw&s",
+      "description": "Go on an unforgettable safari tour, witness wildlife in their natural habitat, and experience the thrill of spotting exotic animals.",
+      "price": "$300"
+    },
+    {
+      "id": "4",
+      "title": "Heritage Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2023/8/333368156/DC/ST/TL/157403623/andaman-island-tour-package-service.jpg",
+      "description": "Step back in time and discover ancient cultures, visit historical landmarks, and uncover the rich heritage of the region.",
+      "price": "$250"
+    },
+    {
+      "id": "5",
+      "title": "Beachfront Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/6/BW/OH/OJ/2217954/north-bay-island-tour-service-500x500.jpg",
+      "description": "Relax and unwind on pristine beaches, enjoy the sunshine, and engage in water activities during your beachfront tour.",
+      "price": "$600"
+    },
+    {
+      "id": "6",
+      "title": "Adventure Sports Tour",
+      "image": "https://www.sthelenatourism.com/wp-content/uploads/2020/07/RS-Corker.jpg",
+      "description": "Get your adrenaline pumping with a variety of thrilling adventure sports including bungee jumping, paragliding, and rock climbing.",
+      "price": "$150"
+    }
+  ]
+}
