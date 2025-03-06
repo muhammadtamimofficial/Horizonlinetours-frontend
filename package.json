@@ -6,15 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch servicesData.json --port 5000"
   },
   "dependencies": {
     "framer-motion": "^12.4.10",
+    "json-server": "^1.0.0-beta.3",
     "next": "15.2.1",
     "next-videos": "^1.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^5.5.0",
+    "swiper": "^11.2.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

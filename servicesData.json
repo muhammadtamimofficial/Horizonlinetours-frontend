@@ -1,0 +1,90 @@
+{
+  "services": [
+    {
+      "id": "1",
+      "title": "Island Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2020/12/YK/HM/JY/8118956/island-tour-service-1000x1000.jpg",
+      "description": "Explore beautiful island destinations, experience crystal-clear waters, and enjoy scenic views during your island tour.",
+      "price": "$500"
+    },
+    {
+      "id": "2",
+      "title": "Mountain Adventure Tour",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ygbKFwOdL2fJ1-2TI7xuo-ZtD5WI260U2Q&s",
+      "description": "Embark on an exciting mountain adventure, hike rugged terrains, and enjoy breathtaking panoramic views from the peak.",
+      "price": "$800"
+    },
+    {
+      "id": "3",
+      "title": "Safari Tour",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVUFSX8T0SC9q5rOlfZYV-Hpbk_Es2ewL9tw&s",
+      "description": "Go on an unforgettable safari tour, witness wildlife in their natural habitat, and experience the thrill of spotting exotic animals.",
+      "price": "$300"
+    },
+    {
+      "id": "4",
+      "title": "Heritage Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2023/8/333368156/DC/ST/TL/157403623/andaman-island-tour-package-service.jpg",
+      "description": "Step back in time and discover ancient cultures, visit historical landmarks, and uncover the rich heritage of the region.",
+      "price": "$250"
+    },
+    {
+      "id": "5",
+      "title": "Beachfront Tour",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/6/BW/OH/OJ/2217954/north-bay-island-tour-service-500x500.jpg",
+      "description": "Relax and unwind on pristine beaches, enjoy the sunshine, and engage in water activities during your beachfront tour.",
+      "price": "$600"
+    },
+    {
+      "id": "6",
+      "title": "Adventure Sports Tour",
+      "image": "https://www.sthelenatourism.com/wp-content/uploads/2020/07/RS-Corker.jpg",
+      "description": "Get your adrenaline pumping with a variety of thrilling adventure sports including bungee jumping, paragliding, and rock climbing.",
+      "price": "$150"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "message": "The Island Tour was absolutely amazing! The views were breathtaking, and the guides were knowledgeable. Highly recommend!",
+      "image": "https://randomuser.me/api/portraits/men/1.jpg",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "message": "I had an incredible time during the Mountain Adventure Tour. The hike was challenging but worth it for the incredible views at the top.",
+      "image": "https://randomuser.me/api/portraits/women/2.jpg",
+      "rating": 4
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "message": "The Safari Tour was a once-in-a-lifetime experience. Seeing the animals up close in their natural habitat was unforgettable.",
+      "image": "https://randomuser.me/api/portraits/women/3.jpg",
+      "rating": 5
+    },
+    {
+      "id": "4",
+      "name": "Bob Brown",
+      "message": "The Heritage Tour allowed me to learn so much about the local culture and history. I highly recommend it for history buffs!",
+      "image": "https://randomuser.me/api/portraits/men/4.jpg",
+      "rating": 4
+    },
+    {
+      "id": "5",
+      "name": "Chris Lee",
+      "message": "The Beachfront Tour was a dream come true. The beaches were pristine, and the water activities were so much fun!",
+      "image": "https://randomuser.me/api/portraits/men/5.jpg",
+      "rating": 5
+    },
+    {
+      "id": "6",
+      "name": "Sarah Wilson",
+      "message": "The Adventure Sports Tour was thrilling! I got to try bungee jumping and paragliding, which were both fantastic experiences.",
+      "image": "https://randomuser.me/api/portraits/women/6.jpg",
+      "rating": 4
+    }
+  ]
+}
