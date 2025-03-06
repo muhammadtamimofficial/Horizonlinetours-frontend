@@ -1,7 +1,7 @@
 import { Testimonial } from "@/types/testimonialType";
 import Image from "next/image";
 import React from "react";
-import { FaStar, FaRegStar } from "react-icons/fa"; // Import the star icons from react-icons
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -10,42 +10,21 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   const { name, message, image, rating } = testimonial;
 
-  // Render stars based on rating
+  // Generate star ratings
   const renderStars = (rating: number) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <span key={i}>
-          {i < rating ? (
-            <FaStar className="text-yellow-500" /> // Filled star
-          ) : (
-            <FaRegStar className="text-gray-300" /> // Empty star
-          )}
-        </span>
-      );
-    }
-    return stars;
+    return Array.from({ length: 5 }).map((_, i) =>
+      i < rating ? <FaStar key={i} className="text-yellow-500" /> : <FaRegStar key={i} className="text-gray-300" />
+    );
   };
 
   return (
-    <div className="border p-4 rounded-lg shadow-lg">
-      <div className="flex items-center mb-4">
-        <Image
-          height={50}
-          width={50}
-          src={image}
-          alt={`Image of ${name}`}
-          className="rounded-full"
-        />
-        <div className="ml-4">
-          <h2 className="text-xl font-semibold">{name}</h2>
-          <div className="flex">{renderStars(rating)}</div>{" "}
-          {/* Display stars */}
-        </div>
+    <div className="border p-6 rounded-lg shadow-lg bg-white text-center">
+      <div className="flex flex-col items-center">
+        <Image height={60} width={60} src={image} alt={name} className="rounded-full border-2 border-gray-300" />
+        <h2 className="mt-3 text-lg font-semibold">{name}</h2>
+        <div className="flex justify-center space-x-1">{renderStars(rating)}</div>
       </div>
-      <div>
-        <p className="text-gray-700">{message}</p>
-      </div>
+      <p className="mt-4 text-gray-700 italic">"{message}"</p>
     </div>
   );
 };
