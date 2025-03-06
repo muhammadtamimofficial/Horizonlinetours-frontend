@@ -9,21 +9,23 @@ interface SidebarProps {
   toggleMenu: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
-  // sidebar items
-  const sidebarLinks = [
-    { href: "/", label: "Home" },
-    { href: "/blog", label: "Blog" },
-    { href: "#services", label: "Services" },
-    { href: "/testimonial", label: "Testimonial" },
-  ];
+// Defining sidebar links dynamically
+const sidebarLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "#services", label: "Services" },
+  { href: "#testimonial", label: "Testimonial" },
+  { href: "#contact", label: "Contact" },
+];
 
-  const handleScrollToServices = () => {
-    // Scrolling to the services section smoothly
-    const servicesSection = document.getElementById("services");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
+  // Function to handle smooth scrolling to sections
+  const handleScrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
+    toggleMenu(); // Closing sidebar after clicking
   };
 
   return (
@@ -50,15 +52,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
 
         <ul className="mt-10 space-y-4 text-lg text-white font-bold">
           {sidebarLinks.map(({ href, label }) => (
-            <li
-              onClick={toggleMenu}
-              key={href}
-              className="hover:text-orange-500 cursor-pointer"
-            >
-              {href === "#services" ? (
-                <a onClick={handleScrollToServices}>{label}</a>
+            <li key={href} className="hover:text-orange-500 cursor-pointer">
+              {href.startsWith("#") ? (
+                <a onClick={() => handleScrollToSection(href.substring(1))}>
+                  {label}
+                </a>
               ) : (
-                <Link href={href}>{label}</Link>
+                <Link href={href} onClick={toggleMenu}>
+                  {label}
+                </Link>
               )}
             </li>
           ))}

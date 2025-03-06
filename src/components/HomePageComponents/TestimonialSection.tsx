@@ -10,7 +10,7 @@ const TestimonialSection = async () => {
   const testimonials = await res.json();
 
   return (
-    <div>
+    <div id="testimonial">
       <h1 className="font-bold text-4xl text-center my-8">Testimonial</h1>
       <div>
         <TestimonialSlider testimonials={testimonials} />
