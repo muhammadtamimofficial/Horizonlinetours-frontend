@@ -8,8 +8,8 @@ const AboutSection = () => {
       <div className="w-full md:w-1/2 flex justify-center">
         <Image
           src="/aboutImage.jpg"
-          height={500}
-          width={500}
+          height={400}
+          width={400}
           alt="AboutImage"
           className="rounded-xl w-full max-w-[600px]"
         />
