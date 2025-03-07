@@ -2,14 +2,14 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="relative h-screen">
-      <div className="absolute top-0 left-0 w-full h-2/3 bg-black opacity-30 z-10 flex items-center justify-center">
+    <div className="relative md:px-0">
+      <div className="absolute top-0 left-0 w-full h-[600px] bg-black opacity-30 z-10 flex items-center justify-center">
         <h1 className="text-white font-extrabold text-[50px] text-center">
           WELCOME TO OUR WEBSITE
         </h1>
       </div>
 
-      <div className="relative h-2/3 overflow-hidden">
+      <div className="relative h-[600px] overflow-hidden">
         <video
           width="100%"
           height="100%"

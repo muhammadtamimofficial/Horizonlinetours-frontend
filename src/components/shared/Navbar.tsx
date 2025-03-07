@@ -35,7 +35,7 @@ const Navbar = () => {
           : "bg-transparent text-white"
       }`}
     >
-      <div className="flex justify-between p-8 max-w-11/12 mx-auto">
+      <div className="flex justify-between py-4 md:p-8 max-w-11/12 mx-auto">
         <div
           onClick={toggleMenu}
           className="flex items-center space-x-2 group cursor-pointer hover:text-orange-500 transition-colors duration-500"
@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
 
         <div>
-          <h1 className="font-bold text-2xl">Logo</h1>
+          <h1 className="font-bold md:text-2xl">Logo</h1>
         </div>
         <div>Book Now</div>
       </div>

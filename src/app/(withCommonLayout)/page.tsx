@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="font-bold">
       <HeroSection />
-      <div className="absolute top-160 px-2 md:px-16">
+      <div className="border md:px-16 mx-auto">
         <AboutSection />
         <ServicesSection />
         <TestimonialSection />
