@@ -31,7 +31,7 @@ const Navbar = () => {
     <div
       className={`fixed w-full top-0 z-20 transition-all duration-300 ${
         isScrolled
-          ? " bg-black opacity-30 text-white shadow-xl"
+          ? "bg-opacity-30 text-black shadow-xl"
           : "bg-transparent text-white"
       }`}
     >
