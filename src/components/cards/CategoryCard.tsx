@@ -9,7 +9,7 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
   return (
     <Link
-      href={``}
+      href={`/services/${category}`}
       className="border p-12 rounded-xl  hover:bg-amber-300 hover:cursor-pointer"
     >
       <h1 className="font-extralight text-[30px] text-center text-blue-500">

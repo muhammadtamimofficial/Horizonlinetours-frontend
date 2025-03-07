@@ -1,6 +1,6 @@
 // Declaring type for a Service type
 export type Service = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   price: string;
