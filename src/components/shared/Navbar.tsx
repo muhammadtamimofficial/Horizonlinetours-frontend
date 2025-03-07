@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="flex justify-between py-4 md:p-8 max-w-11/12 mx-auto">
         <div
           onClick={toggleMenu}
-          className="flex items-center space-x-2 group cursor-pointer hover:text-orange-500 transition-colors duration-500"
+          className="flex items-center space-x-2 group cursor-pointer text-black hover:text-orange-500 transition-colors duration-500"
         >
           <span>MENU</span>
           <HiOutlineMenuAlt1 className="group-hover:hidden" />
@@ -46,9 +46,9 @@ const Navbar = () => {
         </div>
 
         <div>
-          <h1 className="font-bold md:text-2xl">Logo</h1>
+          <h1 className="font-bold md:text-2xl text-black">Logo</h1>
         </div>
-        <div>Book Now</div>
+        <div className="text-black">Book Now</div>
       </div>
 
       <Sidebar isOpen={isOpen} toggleMenu={toggleMenu} />
