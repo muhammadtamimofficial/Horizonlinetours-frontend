@@ -1,24 +1,26 @@
 import React from "react";
-
-import { Service } from "@/types/servicesType";
-import ServicesCard from "../cards/ServicesCard";
+import { baseUrl } from "@/utils/baseUrl";
+import CategoryCard from "../cards/CategoryCard";
 
 const ServicesSection = async () => {
   // calling the services API
-  const res = await fetch("http://localhost:5000/services", {
+  const res = await fetch(`${baseUrl}/getServicesCategories`, {
     cache: "no-store",
   });
-  const services = await res.json();
+  const categories = await res.json();
 
   return (
-    <div
-      id="services"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      {services &&
-        services.map((service: Service) => {
-          return <ServicesCard key={service.id} service={service} />;
-        })}
+    <div>
+      <h1 className="font-bold text-4xl text-center my-8">Our Categories </h1>
+      <div
+        id="services"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        {categories &&
+          categories.map((category: string) => {
+            return <CategoryCard key={category} category={category} />;
+          })}
+      </div>
     </div>
   );
 };
