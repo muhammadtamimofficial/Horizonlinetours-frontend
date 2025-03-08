@@ -1,4 +1,5 @@
 import ServicesCard from "@/components/cards/ServicesCard";
+import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
 import { Service } from "@/types/servicesType";
 import { baseUrl } from "@/utils/baseUrl";
 import React from "react";
@@ -14,11 +15,17 @@ const CategoryPage = async ({ params }: PageProps) => {
   const services = await res.json();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
-      {services &&
-        services.map((service: Service) => {
-          return <ServicesCard key={service._id} service={service} />;
-        })}
+    <div>
+      <SpaceAfterNavbar />
+      <h1 className="font-bold text-4xl text-center">
+        {decodeURIComponent(category)}
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
+        {services &&
+          services.map((service: Service) => {
+            return <ServicesCard key={service._id} service={service} />;
+          })}
+      </div>
     </div>
   );
 };
