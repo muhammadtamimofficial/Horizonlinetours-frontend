@@ -1,7 +1,8 @@
 // Declaring type for a Testimonial type
 export type Testimonial = {
-  id: string;
-  name: string;
+  _id: string;
+  userName?: string;
+  userEmail?: string;
   message: string;
   image: string;
   rating: number;
