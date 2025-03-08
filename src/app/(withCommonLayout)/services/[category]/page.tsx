@@ -3,8 +3,12 @@ import { Service } from "@/types/servicesType";
 import { baseUrl } from "@/utils/baseUrl";
 import React from "react";
 
-const CategoryPage = async ({ params }: { params: { category: string } }) => {
-  const { category } = params;
+interface PageProps {
+  params: Promise<{ category: string }>;
+}
+
+const CategoryPage = async ({ params }: PageProps) => {
+  const { category } = await params;
 
   const res = await fetch(`${baseUrl}/services/category/${category}`);
   const services = await res.json();

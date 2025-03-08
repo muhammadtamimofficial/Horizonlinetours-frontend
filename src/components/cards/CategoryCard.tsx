@@ -6,7 +6,9 @@ interface CategoryCardProps {
   category: string;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({
+  category,
+}: CategoryCardProps) => {
   return (
     <Link
       href={`/services/${category}`}
