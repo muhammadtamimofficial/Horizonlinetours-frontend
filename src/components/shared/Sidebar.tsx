@@ -12,7 +12,7 @@ interface SidebarProps {
 // Defining sidebar links dynamically
 const sidebarLinks = [
   { href: "/", label: "Home" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blogs", label: "Blogs" },
   { href: "#services", label: "Services" },
   { href: "#testimonial", label: "Testimonial" },
   { href: "#contact", label: "Contact" },

@@ -1,7 +1,13 @@
+import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
 import React from "react";
 
 const ServicesPage = () => {
-  return <div className="mt-12 ">All Services Page</div>;
+  return (
+    <div>
+      <SpaceAfterNavbar />
+      <h1>All Services Page</h1>
+    </div>
+  );
 };
 
 export default ServicesPage;
