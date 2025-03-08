@@ -7,7 +7,7 @@ const ServicesSection = async () => {
   const res = await fetch(`${baseUrl}/getServicesCategories`, {
     cache: "no-store",
   });
-  const categories = await res.json();
+  const categories: string[] = await res.json();
 
   return (
     <div>
