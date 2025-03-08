@@ -37,7 +37,7 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
         className="relative"
       >
         {testimonials.map((testimonial) => (
-          <SwiperSlide key={testimonial.id} className="flex justify-center">
+          <SwiperSlide key={testimonial._id} className="flex justify-center">
             <TestimonialCard testimonial={testimonial} />
           </SwiperSlide>
         ))}

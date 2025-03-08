@@ -1,10 +1,11 @@
 import React from "react";
 
 import TestimonialSlider from "./TestimonialSlider/TestimonialSlider";
+import { baseUrl } from "@/utils/baseUrl";
 
 const TestimonialSection = async () => {
   // calling the testimonial API
-  const res = await fetch("http://localhost:5000/testimonials", {
+  const res = await fetch(`${baseUrl}/testimonials`, {
     cache: "no-store",
   });
   const testimonials = await res.json();
