@@ -30,6 +30,13 @@ const CreateServicePage = () => {
       const response = await createService(formData);
       if (response?.acknowledged === true) {
         toast.success("Service Created Successfully");
+        setFormData({
+          title: "",
+          image: "",
+          description: "",
+          price: "",
+          category: "",
+        });
       } else {
         toast.error("Failed to create service");
       }
