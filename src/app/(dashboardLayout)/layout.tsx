@@ -12,7 +12,7 @@ const layout = ({
       <DashboardNavbar />
       <div className="flex">
         <DashboardSidebar />
-        <div> {children}</div>
+        <div className="w-6/12 mx-auto"> {children}</div>
       </div>
     </div>
   );

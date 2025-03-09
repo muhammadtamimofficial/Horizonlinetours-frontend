@@ -23,7 +23,7 @@ const DashboardSidebar = () => {
             <li key={link.href} className="mb-2">
               <Link
                 href={link.href}
-                className={`block px-4 py-2 rounded-md transition ${
+                className={`block px-4 py-2 transition ${
                   pathname === link.href ? "bg-gray-700" : "hover:bg-gray-700"
                 }`}
               >
