@@ -12,7 +12,10 @@ const DashboardSidebar = () => {
   ];
 
   if (role === "admin") {
-    sidebarLinks.push({ href: "/create-service", label: "Create Service" });
+    sidebarLinks.push(
+      { href: "/create-service", label: "Create Service" },
+      { href: "/all-services", label: "All Services" }
+    );
   } else if (role === "user") {
     sidebarLinks.push({ href: "/user-orders", label: "My Orders" });
   }
