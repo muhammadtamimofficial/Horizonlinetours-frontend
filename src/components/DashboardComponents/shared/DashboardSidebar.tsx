@@ -6,7 +6,10 @@ const DashboardSidebar = () => {
   const pathname = usePathname();
   const role: string = "admin";
 
-  const sidebarLinks = [{ href: "/dashboard", label: "Profile" }];
+  const sidebarLinks = [
+    { href: "/", label: "Home" },
+    { href: "/dashboard", label: "Profile" },
+  ];
 
   if (role === "admin") {
     sidebarLinks.push({ href: "/create-service", label: "Create Service" });
