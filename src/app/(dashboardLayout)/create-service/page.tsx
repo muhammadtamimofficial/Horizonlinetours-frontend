@@ -1,6 +1,7 @@
 "use client";
 import { createService } from "@/actions/createService";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const CreateServicePage = () => {
   const [formData, setFormData] = useState({
@@ -25,8 +26,18 @@ const CreateServicePage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await createService(formData);
-    console.log(response);
+    try {
+      const response = await createService(formData);
+      if (response?.acknowledged === true) {
+        toast.success("Service Created Successfully");
+      } else {
+        toast.error("Failed to create service");
+      }
+      console.log(response);
+    } catch (error) {
+      toast.error("An error occurred while creating the service");
+      console.error(error);
+    }
   };
 
   return (
