@@ -5,4 +5,5 @@ export type Service = {
   description: string;
   price: string;
   image: string;
+  category: string;
 };
