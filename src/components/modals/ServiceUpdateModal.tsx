@@ -8,7 +8,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { Service } from "@/types/servicesType";
-import { updateService } from "@/actions/updateService";
+import { updateService } from "@/utils/actions/updateService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 

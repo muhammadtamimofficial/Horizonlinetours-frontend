@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Service } from "@/types/servicesType";
-import { deleteService } from "@/actions/deleteService";
+import { deleteService } from "@/utils/actions/deleteService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ServiceUpdateModal from "../modals/ServiceUpdateModal";
