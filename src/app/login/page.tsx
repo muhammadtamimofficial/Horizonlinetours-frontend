@@ -6,6 +6,9 @@ import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { loginUser } from "@/utils/actions/loginUser";
 import { useRouter } from "next/navigation";
+import { FaGoogle } from "react-icons/fa";
+import { signIn } from "next-auth/react";
+import { baseUrl } from "@/utils/baseUrl";
 
 export type LoginUser = {
   email: string;
@@ -104,14 +107,25 @@ const LoginPage = () => {
                 Login
               </button>
             </div>
-
-            <p className="text-center text-gray-600">
-              Do not have an account?
-              <Link className="text-teal-500 hover:underline" href="/register">
-                Register Now
-              </Link>
-            </p>
           </form>
+          <div className="text-center">
+            <button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: `${baseUrl}/dashboard`,
+                })
+              }
+              className="border p-2 hover:cursor-pointer"
+            >
+              <FaGoogle className="text-2xl" />
+            </button>
+          </div>
+          <p className="text-center text-gray-600">
+            Do not have an account?
+            <Link className="text-teal-500 hover:underline" href="/register">
+              Register Now
+            </Link>
+          </p>
         </div>
       </div>
     </div>
