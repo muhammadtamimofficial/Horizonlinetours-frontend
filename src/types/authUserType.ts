@@ -1,5 +1,7 @@
 export type AuthUser = {
-  name: string;
+  username: string;
   email: string;
   password: string;
+  image?: string;
+  role?: string;
 };
