@@ -14,7 +14,8 @@ const DashboardSidebar = () => {
   if (role === "admin") {
     sidebarLinks.push(
       { href: "/create-service", label: "Create Service" },
-      { href: "/all-services", label: "All Services" }
+      { href: "/all-services", label: "All Services" },
+      { href: "/create-blog", label: "Blogs" }
     );
   } else if (role === "user") {
     sidebarLinks.push({ href: "/user-orders", label: "My Orders" });
