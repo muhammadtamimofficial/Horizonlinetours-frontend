@@ -1,21 +1,22 @@
 "use client";
-
 import { useState, FormEvent, ChangeEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { registerUser } from "@/utils/actions/registerUser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/utils/actions/createUser";
+import { User } from "@/types/userType";
 
 export type AuthUser = {
-  name: string;
+  username: string;
   email: string;
   password: string;
 };
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState<AuthUser>({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -23,8 +24,6 @@ const RegisterPage = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // router for navigating
 
   const router = useRouter();
 
@@ -35,7 +34,16 @@ const RegisterPage = () => {
       const res = await registerUser(formData);
       console.log(res);
       if (res.success) {
-        toast.success("Register Success");
+        // Creating user object with default image and role if not provided
+        const newUser: User = {
+          username: formData.username,
+          email: formData.email,
+          image: "https://via.placeholder.com/150",
+        };
+
+        const userRes = await createUser(newUser);
+        console.log("user res", userRes);
+        toast.success("Registration successful");
         router.push("/login");
       } else {
         toast.error(res.message);
@@ -72,8 +80,8 @@ const RegisterPage = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 placeholder="Full Name"
                 className="w-full p-3 border border-gray-300 rounded "

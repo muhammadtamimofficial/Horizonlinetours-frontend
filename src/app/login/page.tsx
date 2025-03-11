@@ -8,7 +8,6 @@ import { loginUser } from "@/utils/actions/loginUser";
 import { useRouter } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 import { signIn } from "next-auth/react";
-import { baseUrl } from "@/utils/baseUrl";
 
 export type LoginUser = {
   email: string;
@@ -48,6 +47,21 @@ const LoginPage = () => {
         console.error(err.message);
         toast.error("An error occurred while logging in");
       }
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signIn("google", {
+        callbackUrl: `http://localhost:3000/login`,
+      });
+
+      if (result?.error) {
+        toast.error("Login failed");
+      }
+    } catch (error) {
+      toast.error("An error occurred during Google login");
+      console.log(error);
     }
   };
 
@@ -110,11 +124,7 @@ const LoginPage = () => {
           </form>
           <div className="text-center">
             <button
-              onClick={() =>
-                signIn("google", {
-                  callbackUrl: `${baseUrl}/dashboard`,
-                })
-              }
+              onClick={handleGoogleLogin}
               className="border p-2 hover:cursor-pointer"
             >
               <FaGoogle className="text-2xl" />
