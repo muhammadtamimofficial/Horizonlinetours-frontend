@@ -1,5 +1,6 @@
 "use client";
 
+import { getCurrentUserFromLocalStorage } from "@/utils/actions/getCurrentUserFromLocalStorage";
 import { getUserByEmail } from "@/utils/actions/getUserByEmail";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -10,6 +11,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        console.log(getCurrentUserFromLocalStorage());
         const userEmail = "jamanshah1@gmail.com"; // Replace with the actual email logic
         const fetchedUser = await getUserByEmail(userEmail);
         setUser(fetchedUser);

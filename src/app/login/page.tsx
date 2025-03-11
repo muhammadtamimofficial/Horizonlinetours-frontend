@@ -125,7 +125,7 @@ const LoginPage = () => {
           <div className="text-center">
             <button
               onClick={handleGoogleLogin}
-              className="border p-2 hover:cursor-pointer"
+              className="border p-2 hover:cursor-pointer hidden"
             >
               <FaGoogle className="text-2xl" />
             </button>

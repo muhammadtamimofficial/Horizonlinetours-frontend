@@ -1,11 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { getUserByEmail } from "./actions/getUserByEmail";
 import { createUser } from "./actions/createUser";
-// import { createUser } from "./actions/createUser";
-// import { Account, User as AuthUser } from "next-auth";
-// import { getUserByEmail } from "./actions/getUserByEmail";
-// import { createUser } from "./actions/createUser";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -30,7 +25,7 @@ export const authOptions: NextAuthOptions = {
         } = {
           username: profile?.name,
           email: profile?.email,
-          image: profile?.picture,
+          image: profile?.image,
         };
 
         const res = await createUser(newUser);

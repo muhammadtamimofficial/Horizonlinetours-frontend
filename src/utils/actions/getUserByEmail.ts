@@ -1,8 +1,10 @@
 "use server";
 
-import { baseUrl } from "@/utils/baseUrl";
+import { baseUrl } from "../baseUrl";
 
-export const getUserByEmail = async (email: string | undefined) => {
+export const getUserByEmail = async (email: string) => {
   const res = await fetch(`${baseUrl}/users/${email}`);
-  return res.json();
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data;
 };
