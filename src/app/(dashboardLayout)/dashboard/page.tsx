@@ -1,43 +1,42 @@
 "use client";
-
-import { getCurrentUserFromLocalStorage } from "@/utils/actions/getCurrentUserFromLocalStorage";
-import { getUserByEmail } from "@/utils/actions/getUserByEmail";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+import useGetCurrentUser from "@/app/hooks/useGetCurrentUser";
+import Image from "next/image";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
+  const { currentUser } = useGetCurrentUser();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        console.log(getCurrentUserFromLocalStorage());
-        const userEmail = "jamanshah1@gmail.com"; // Replace with the actual email logic
-        const fetchedUser = await getUserByEmail(userEmail);
-        setUser(fetchedUser);
-      } catch (err) {
-        console.error("Failed to fetch user data:", err);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      console.log("user form dashboard", user);
-    }
-  }, [user]);
-
-  const handleTestToast = () => {
-    toast.success("This is a test toast!");
-  };
+  // Destructure user data
+  const { username, email, image } = currentUser || {};
 
   return (
-    <div>
-      <button onClick={handleTestToast} className="p-2 bg-blue-500 text-white">
-        Show Test Toast
-      </button>
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          {/* Profile Header */}
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6">
+            <div className="flex flex-col items-center sm:flex-row sm:items-start">
+              {/* Profile Image */}
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg relative">
+                <Image
+                  src={image || "/default-avatar.png"} // Fallback for missing image
+                  alt={username || "User"}
+                  fill // Fill the container
+                  className="object-cover" // Ensure the image covers the container
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive image sizes
+                />
+              </div>
+
+              {/* Profile Info */}
+              <div className="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left">
+                <h1 className="text-2xl font-bold text-white">
+                  {username || "Guest"}
+                </h1>
+                <p className="text-gray-200">{email || "No email provided"}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
