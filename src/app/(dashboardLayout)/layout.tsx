@@ -32,6 +32,7 @@ const Layout = ({
 
       if (currentUser && currentUser.email) {
         setUser(currentUser);
+        console.log("from dashboard layout", currentUser);
 
         try {
           const dbUser = await getUserByEmail(currentUser.email);
