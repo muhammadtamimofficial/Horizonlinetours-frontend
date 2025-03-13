@@ -5,19 +5,19 @@ const AboutSection = () => {
   return (
     <div className=" flex flex-col md:flex-row items-center justify-between gap-4 my-8 px-2 md:px-4">
       {/* Image Section */}
-      <div className="w-full md:w-1/2 flex justify-center">
+      <div className="w-full flex justify-center">
         <Image
           src="/aboutImage.jpg"
-          height={400}
-          width={400}
+          height={1200}
+          width={500}
           alt="AboutImage"
-          className="rounded-xl w-full max-w-[600px]"
+          className="rounded-sm"
         />
       </div>
 
       {/* Text Section */}
-      <div className=" flex flex-col justify-center w-full md:w-1/2 text-center md:text-left">
-        <h1 className="text-center font-bold text-3xl md:text-4xl mb-6">
+      <div className=" flex flex-col justify-center  text-center md:text-left">
+        <h1 className="text-center font-bold text-4xl text-blue-400 md:text-[60px] mb-6">
           Welcome to Horizonetours
         </h1>
         <p className="text-sm md:text-base leading-relaxed">
