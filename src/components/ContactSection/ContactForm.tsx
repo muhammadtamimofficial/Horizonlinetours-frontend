@@ -1,17 +1,12 @@
 "use client";
+import { Message } from "@/types/messageType";
+import { createMessage } from "@/utils/actions/createMessage";
 import React, { useState } from "react";
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  mobileNo: string;
-  email: string;
-  message: string;
-}
+import toast from "react-hot-toast";
 
 const ContactForm: React.FC = () => {
   // State to manage form data
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<Message>({
     firstName: "",
     lastName: "",
     mobileNo: "",
@@ -31,9 +26,27 @@ const ContactForm: React.FC = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData); // Log form data to the console
+    try {
+      const response = await createMessage(formData);
+      if (response?.acknowledged === true) {
+        toast.success("Message Sent Success");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          mobileNo: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        toast.error("Failed to Send message , Try again");
+      }
+      console.log(response);
+    } catch (error) {
+      toast.error("An error occurred while creating the Message");
+      console.error(error);
+    }
   };
 
   return (
