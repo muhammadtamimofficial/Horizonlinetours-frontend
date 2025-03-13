@@ -50,7 +50,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto p-6 rounded-lg">
+    <div className="mx-auto rounded-lg">
       <form onSubmit={handleSubmit}>
         {/* First Name */}
         <div className="flex gap-2">

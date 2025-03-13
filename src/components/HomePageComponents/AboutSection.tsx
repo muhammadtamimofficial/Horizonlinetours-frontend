@@ -17,7 +17,7 @@ const AboutSection = () => {
 
       {/* Text Section */}
       <div className=" flex flex-col justify-center  text-center md:text-left">
-        <h1 className="text-center font-bold text-4xl text-blue-400 md:text-[60px] mb-6">
+        <h1 className="text-center font-bold text-2xl text-blue-400 md:text-[60px] mb-2 md:mb-6">
           Welcome to Horizonetours
         </h1>
         <p className="text-sm md:text-base leading-relaxed">
