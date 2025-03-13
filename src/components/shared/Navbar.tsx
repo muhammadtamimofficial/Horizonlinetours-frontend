@@ -31,11 +31,11 @@ const Navbar = () => {
     <div
       className={`fixed w-full top-0 z-20 transition-all duration-300 ${
         isScrolled
-          ? "bg-opacity-30 text-black shadow-xl"
+          ? "bg-opacity-30 bg-white text-black shadow-xl"
           : "bg-transparent text-white"
       }`}
     >
-      <div className="flex justify-between py-4 md:p-8 max-w-11/12 mx-auto">
+      <div className="flex justify-between py-4 md:p-4 max-w-11/12 mx-auto">
         <div
           onClick={toggleMenu}
           className="flex items-center space-x-2 group cursor-pointer text-black hover:text-orange-500 transition-colors duration-500"
