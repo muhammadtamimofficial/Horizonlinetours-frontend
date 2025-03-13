@@ -2,6 +2,7 @@ import React from "react";
 
 import TestimonialSlider from "./TestimonialSlider/TestimonialSlider";
 import { baseUrl } from "@/utils/baseUrl";
+import SectionHeading from "../shared/SectionHeading";
 
 const TestimonialSection = async () => {
   // calling the testimonial API
@@ -11,7 +12,7 @@ const TestimonialSection = async () => {
   const testimonials = await res.json();
   return (
     <div id="testimonial">
-      <h1 className="font-bold text-4xl text-center my-8">Testimonial</h1>
+      <SectionHeading title="Testimonial" />
       <div>
         <TestimonialSlider testimonials={testimonials} />
       </div>

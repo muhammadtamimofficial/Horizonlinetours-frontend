@@ -3,6 +3,8 @@ import { FaLocationDot, FaInstagram, FaCcVisa } from "react-icons/fa6";
 import { IoCallOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { LuCopyright } from "react-icons/lu";
+
 import Link from "next/link";
 
 const Footer = () => {
@@ -96,6 +98,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex items-center gap-2">
+        <LuCopyright /> <span>2022 - {new Date().getFullYear()}</span>
       </div>
     </footer>
   );
