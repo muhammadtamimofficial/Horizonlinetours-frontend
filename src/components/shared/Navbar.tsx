@@ -48,7 +48,9 @@ const Navbar = () => {
         <div>
           <h1 className="font-bold md:text-2xl text-black">Logo</h1>
         </div>
-        <div className="text-black">Book Now</div>
+        <div className="text-black border p-2 md:p-4 border-amber-400 hover:bg-amber-400 cursor-pointer transition duration-500">
+          Book Now
+        </div>
       </div>
 
       <Sidebar isOpen={isOpen} toggleMenu={toggleMenu} />

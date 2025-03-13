@@ -4,9 +4,20 @@ const HeroSection = () => {
   return (
     <div className="relative md:px-0">
       <div className="absolute top-0 left-0 w-full h-[600px] bg-black opacity-30 z-10 flex items-center justify-center">
-        <h1 className="text-white font-extrabold text-[50px] text-center">
-          WELCOME TO OUR WEBSITE
-        </h1>
+        <div className="text-white text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-[80px] font-extrabold">
+            Welcome to
+            <br className="sm:hidden" />
+            <span className="hidden sm:inline"> </span>
+            The Adventure of Bahamas
+          </h1>
+          <p className="text-sm md:text-4xl my-4 md:mb-4">
+            Swimming Pigs • Private tours • Sightseeing tours • Wedding group
+            tours
+          </p>
+          <span className="text-sm md:text-4xl">Stay In Touch</span>
+        </div>
+        <br />
       </div>
 
       <div className="relative h-[600px] overflow-hidden">
