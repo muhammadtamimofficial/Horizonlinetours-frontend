@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="font-bold">
       <HeroSection />
-      <div className="border md:px-16 mx-auto">
+      <div className="md:px-16 mx-auto">
         <AboutSection />
         <ServicesSection />
         <TestimonialSection />

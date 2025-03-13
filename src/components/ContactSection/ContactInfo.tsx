@@ -34,7 +34,7 @@ const ContactInfo: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid grid-cols-2 gap-8 p-4">
       {cardInfo.map((card, index) => (
         <ContactCard
           key={index} // Unique key for each card
