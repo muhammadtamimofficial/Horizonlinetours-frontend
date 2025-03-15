@@ -1,5 +1,5 @@
 import ServicesCard from "@/components/cards/ServicesCard";
-import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
+import CategoryHeader from "@/components/CategoryHeader";
 import { Service } from "@/types/servicesType";
 import { baseUrl } from "@/utils/baseUrl";
 import React from "react";
@@ -16,10 +16,8 @@ const CategoryPage = async ({ params }: PageProps) => {
 
   return (
     <div>
-      <SpaceAfterNavbar />
-      <h1 className="font-bold text-4xl text-center">
-        {decodeURIComponent(category)}
-      </h1>
+      <CategoryHeader title={decodeURIComponent(category)} />
+      <h1 className="font-bold text-4xl text-center"></h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
         {services &&
           services.map((service: Service) => {
