@@ -2,6 +2,7 @@
 import { GalleryItem } from "@/types/galleryItemType";
 import Image from "next/image";
 import SectionHeading from "../shared/SectionHeading";
+import Link from "next/link";
 
 const GallerySection = () => {
   const galleryData: GalleryItem[] = [
@@ -57,7 +58,7 @@ const GallerySection = () => {
   return (
     <div>
       <SectionHeading title="Explore Our Gallery" />
-      <div className="mx-auto p-8">
+      <Link href={`/gallery`} className="mx-auto p-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {galleryData.map((item, index) => {
             const { width, height } = imageSizes[index % imageSizes.length]; // Cycle through sizes
@@ -84,7 +85,7 @@ const GallerySection = () => {
             );
           })}
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
