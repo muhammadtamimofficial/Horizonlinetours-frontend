@@ -1,4 +1,5 @@
 import BlogCard from "@/components/cards/BlogCard";
+import SectionHeaderWithImage from "@/components/DashboardComponents/shared/SectionHeaderWithImage";
 import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
 import { Blog } from "@/types/BlogType";
 import { baseUrl } from "@/utils/baseUrl";
@@ -14,7 +15,11 @@ const BlogsPage = async () => {
   return (
     <div>
       <SpaceAfterNavbar />
-      <h1 className="font-bold text-4xl text-center mb-4">Blogs</h1>
+      <SectionHeaderWithImage
+        title="Blogs"
+        imageUrl="/blogHeader.jpg"
+        height="52"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {blogs &&
           blogs.map((blog: Blog) => {

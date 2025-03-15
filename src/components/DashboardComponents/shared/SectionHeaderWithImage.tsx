@@ -4,14 +4,18 @@ import Image from "next/image";
 interface SectionHeaderWithImageProps {
   title: string;
   imageUrl: string;
+  height: string;
 }
 
 const SectionHeaderWithImage: React.FC<SectionHeaderWithImageProps> = ({
   title,
   imageUrl,
+  height,
 }) => {
   return (
-    <div className="m-4 rounded-2xl text-center relative overflow-hidden h-96">
+    <div
+      className={`m-4 rounded-2xl text-center relative overflow-hidden h-${height}`}
+    >
       <Image
         src={imageUrl}
         alt="Gallery Header Background"
