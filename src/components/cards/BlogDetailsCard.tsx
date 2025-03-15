@@ -47,7 +47,7 @@ const BlogDetailsCard = ({ blog }: { blog: Blog }) => {
           alt={creatorName}
           width={48}
           height={48}
-          className="rounded-full border-2 border-gray-300"
+          className=" w-12 h-12 border-2 rounded-full border-gray-300"
         />
         <div>
           <p className="text-xl font-medium text-gray-800">{creatorName}</p>
