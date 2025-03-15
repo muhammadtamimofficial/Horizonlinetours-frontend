@@ -16,12 +16,19 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
     title,
     image,
     description,
+    createdAt,
   } = blog;
 
-  console.log(_id);
+  const [year, month, day] = new Date(createdAt)
+    .toISOString()
+    .split("T")[0]
+    .split("-")
+    .map(Number);
+
+  console.log("creator image", creatorImage);
+
   return (
-    <div className="rounded overflow-hidden shadow-lg">
-      {/* Use Next.js Image component for optimized image loading */}
+    <div className="rounded relative overflow-hidden shadow-lg">
       <div className="w-full h-48 relative">
         <Image
           src={image}
@@ -32,17 +39,19 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         />
       </div>
 
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{title}</div>
-        <p className="text-gray-700 text-base">
+      <div className="px-6 py-4 border-l-12 border-amber-600">
+        <div className="font-bold text-xl mb-2 border-b-1 pb-8">{title}</div>
+        <p className="text-gray-700 text-base my-4">
           {description.slice(0, 20) + "..."}
-          <Link href={`/blogs/${_id}`}> read more</Link>
+          <Link href={`/blogs/${_id}`}>
+            {" "}
+            <span className="text-blue-600 font-bold">read more</span>
+          </Link>
         </p>
       </div>
 
       <div className="px-6 py-4 flex items-center">
-        <div className="w-10 h-10 relative mr-4">
-          {/* Creator image with Next.js Image component */}
+        <div className="w-12 h-12 relative mr-4">
           <Image
             src={creatorImage}
             alt={creatorName}
@@ -53,6 +62,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         <div>
           <p className="text-sm font-semibold">{creatorName}</p>
           <p className="text-xs text-gray-500">{creatorEmail}</p>
+        </div>
+        <div className="absolute flex justify-center items-center top-2 right-2 bg-blue-500 h-25 w-25 rounded-full">
+          <h1 className="font font-extralight">{`${day}/${month}/${year}`}</h1>
         </div>
       </div>
     </div>
