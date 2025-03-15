@@ -1,5 +1,5 @@
 import BlogCard from "@/components/cards/BlogCard";
-import SectionHeaderWithImage from "@/components/DashboardComponents/shared/SectionHeaderWithImage";
+import SectionHeaderWithImage from "@/components/shared/SectionHeaderWithImage";
 import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
 import { Blog } from "@/types/BlogType";
 import { baseUrl } from "@/utils/baseUrl";
