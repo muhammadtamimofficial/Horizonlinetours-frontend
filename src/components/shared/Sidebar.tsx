@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
@@ -9,23 +10,43 @@ interface SidebarProps {
   toggleMenu: () => void;
 }
 
-// Defining sidebar links dynamically
 const sidebarLinks = [
   { href: "/", label: "Home" },
   { href: "/blogs", label: "Blogs" },
   { href: "#services", label: "Services" },
   { href: "#testimonial", label: "Testimonial" },
   { href: "#contact", label: "Contact" },
+  { href: "/gallery", label: "Gallery" },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
-  // Function to handle smooth scrolling to sections
-  const handleScrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+  const router = useRouter();
+
+  // Scroll to section if query parameter exists
+  useEffect(() => {
+    const sectionId = window.location.hash.substring(1);
+    if (sectionId) {
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300); // Delay to ensure the section is available
     }
-    toggleMenu(); // Closing sidebar after clicking
+  }, []);
+
+  const handleScrollToSection = (id: string) => {
+    if (window.location.pathname === "/") {
+      // If already on Home, scroll to section
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If on another page, navigate to Home and append hash
+      router.push(`/#${id}`);
+    }
+    toggleMenu();
   };
 
   return (
@@ -37,10 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
       <motion.div
         initial={{ x: "-100%", opacity: 0 }}
         animate={{ x: isOpen ? "0%" : "-100%", opacity: isOpen ? 1 : 0 }}
-        transition={{
-          stiffness: 500,
-          opacity: { duration: 0.5 },
-        }}
+        transition={{ stiffness: 500, opacity: { duration: 0.5 } }}
         className="fixed top-0 left-0 h-screen w-3/4 md:w-1/4 bg-black/90 p-16 z-50"
       >
         <button

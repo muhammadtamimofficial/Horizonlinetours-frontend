@@ -9,7 +9,6 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import useGetCurrentUser from "@/app/hooks/useGetCurrentUser";
 import { createBlog } from "@/utils/actions/createBlog";
 import { Blog } from "@/types/BlogType";
@@ -17,13 +16,14 @@ import { Blog } from "@/types/BlogType";
 interface FormCreatorModalProps {
   isUpdateModalOpen: boolean;
   setIsUpdateModalOpen: Dispatch<SetStateAction<boolean>>;
+  setBlogs: Dispatch<SetStateAction<Blog[]>>;
 }
 
 export default function CreateBlogModal({
   isUpdateModalOpen,
   setIsUpdateModalOpen,
+  setBlogs,
 }: FormCreatorModalProps) {
-  // Get current user from hook
   const { currentUser } = useGetCurrentUser();
   const { username, email, image } = currentUser || {};
 
@@ -36,7 +36,6 @@ export default function CreateBlogModal({
     description: "",
   });
 
-  // Pre-fill form data when currentUser changes
   useEffect(() => {
     if (currentUser) {
       setFormData((prevData) => ({
@@ -47,9 +46,6 @@ export default function CreateBlogModal({
       }));
     }
   }, [currentUser, username, email, image]);
-
-  // calling router function to refresh
-  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -63,11 +59,9 @@ export default function CreateBlogModal({
     }));
   };
 
-  // Form submission functionality
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Prepare the data to be sent to the server
       const blogData: Blog = {
         creatorName: formData.creatorName,
         creatorEmail: formData.creatorEmail,
@@ -79,14 +73,11 @@ export default function CreateBlogModal({
       };
       console.log(blogData);
 
-      // Call the createBlog function
       const response = await createBlog(blogData);
 
-      // Check if the response is successful
       if (response?.acknowledged === true) {
         toast.success("Blog Created Successfully");
 
-        // Reset the form data
         setFormData({
           ...formData,
           title: "",
@@ -94,9 +85,12 @@ export default function CreateBlogModal({
           description: "",
         });
 
-        // Refresh the page and close the modal
-        router.refresh();
         setIsUpdateModalOpen(false);
+
+        setBlogs((prevBlogs) => [
+          { _id: response.insertedId, ...blogData },
+          ...prevBlogs,
+        ]);
       } else {
         toast.error("Failed to create blog");
       }
@@ -106,7 +100,6 @@ export default function CreateBlogModal({
     }
   };
 
-  // Modal closing function
   const closeModal = () => {
     setIsUpdateModalOpen(false);
   };
@@ -129,7 +122,7 @@ export default function CreateBlogModal({
                   <MdCancel
                     size={30}
                     className="text-gray-600 cursor-pointer hover:text-gray-800"
-                    onClick={closeModal} // Close modal on click
+                    onClick={closeModal}
                   />
                 </div>
 
@@ -140,10 +133,8 @@ export default function CreateBlogModal({
                   Create Form
                 </DialogTitle>
 
-                {/* ----------- Form starts ---------- */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Creator Name (Uneditable) */}
                     <div className="flex flex-col space-y-2">
                       <label
                         htmlFor="creatorName"
@@ -156,12 +147,11 @@ export default function CreateBlogModal({
                         id="creatorName"
                         name="creatorName"
                         value={formData.creatorName}
-                        readOnly // Make the field uneditable
+                        readOnly
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 cursor-not-allowed"
                       />
                     </div>
 
-                    {/* Creator Email (Uneditable) */}
                     <div className="flex flex-col space-y-2">
                       <label
                         htmlFor="creatorEmail"
@@ -174,12 +164,11 @@ export default function CreateBlogModal({
                         id="creatorEmail"
                         name="creatorEmail"
                         value={formData.creatorEmail}
-                        readOnly // Make the field uneditable
+                        readOnly
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 cursor-not-allowed"
                       />
                     </div>
 
-                    {/* Creator Image (Uneditable) */}
                     <div className="flex flex-col space-y-2">
                       <label
                         htmlFor="creatorImage"
@@ -192,12 +181,11 @@ export default function CreateBlogModal({
                         id="creatorImage"
                         name="creatorImage"
                         value={formData.creatorImage}
-                        readOnly // Make the field uneditable
+                        readOnly
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 cursor-not-allowed"
                       />
                     </div>
 
-                    {/* Title (Editable) */}
                     <div className="flex flex-col space-y-2">
                       <label
                         htmlFor="title"
@@ -218,7 +206,6 @@ export default function CreateBlogModal({
                     </div>
                   </div>
 
-                  {/* Image URL (Editable) */}
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="image"
@@ -238,7 +225,6 @@ export default function CreateBlogModal({
                     />
                   </div>
 
-                  {/* Description (Editable) */}
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="description"
@@ -257,7 +243,6 @@ export default function CreateBlogModal({
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:cursor-pointer hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -265,7 +250,6 @@ export default function CreateBlogModal({
                     Submit Form
                   </button>
                 </form>
-                {/*------------ Form ends -------------- */}
               </DialogPanel>
             </TransitionChild>
           </div>

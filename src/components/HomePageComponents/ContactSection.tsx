@@ -5,7 +5,7 @@ import SectionHeading from "../shared/SectionHeading";
 
 const ContactSection = () => {
   return (
-    <div>
+    <div id="contact">
       <SectionHeading title="Contact Us" />
       <div className="flex flex-col md:flex-row p-4 gap-2">
         {/* left side  */}
