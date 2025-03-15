@@ -15,7 +15,8 @@ const DashboardSidebar = () => {
     sidebarLinks.push(
       { href: "/create-service", label: "Create Service" },
       { href: "/all-services", label: "All Services" },
-      { href: "/create-blog", label: "Blogs" }
+      { href: "/create-blog", label: "Blogs" },
+      { href: "/add-gallery", label: "Gallery" }
     );
   } else if (role === "user") {
     sidebarLinks.push({ href: "/user-orders", label: "My Orders" });

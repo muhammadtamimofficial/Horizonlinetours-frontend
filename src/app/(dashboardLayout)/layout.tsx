@@ -70,11 +70,11 @@ const Layout = ({
 
   // Render the layout only if the user exists in the database
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <DashboardNavbar />
-      <div className="flex">
+      <div className="flex flex-1 overflow-hidden">
         <DashboardSidebar />
-        <div className="w-6/12 mx-auto">{children}</div>
+        <div className="flex-1 p-6 overflow-auto">{children}</div>
       </div>
     </div>
   );
