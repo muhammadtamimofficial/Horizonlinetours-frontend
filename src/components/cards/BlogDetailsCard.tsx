@@ -3,8 +3,21 @@ import React from "react";
 import Image from "next/image";
 
 const BlogDetailsCard = ({ blog }: { blog: Blog }) => {
-  const { creatorName, creatorEmail, creatorImage, title, image, description } =
-    blog;
+  const {
+    creatorName,
+    creatorEmail,
+    creatorImage,
+    title,
+    image,
+    description,
+    createdAt,
+  } = blog;
+
+  const [year, month, day] = new Date(createdAt)
+    .toISOString()
+    .split("T")[0]
+    .split("-")
+    .map(Number);
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-4">
@@ -20,7 +33,12 @@ const BlogDetailsCard = ({ blog }: { blog: Blog }) => {
       </div>
 
       {/* Blog Title */}
-      <h1 className="text-3xl font-semibold text-gray-900">{title}</h1>
+      <div>
+        <h1 className="text-3xl text-center border-b-2 border-amber-200 pb-4 font-semibold text-gray-900">
+          {title}
+        </h1>
+        <h1 className="font font-extralight text-2xl my-2">{`${day}/${month}/${year}`}</h1>
+      </div>
 
       {/* Creator Info */}
       <div className="flex items-center space-x-4">
