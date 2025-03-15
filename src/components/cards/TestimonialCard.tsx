@@ -22,14 +22,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   };
 
   return (
-    <div className="border p-6 rounded-lg shadow-lg bg-white text-center">
+    <div className="p-6 shadow-lg bg-white text-center h-[300px]">
       <div className="flex flex-col items-center">
         <Image
-          height={60}
-          width={60}
+          height={80}
+          width={80}
           src={image}
           alt={image}
-          className="rounded-full border-2 border-gray-300"
+          className="rounded-full border-4 border-amber-500 "
         />
         <h2 className="mt-3 text-lg font-semibold">{userName}</h2>
         <div className="flex justify-center space-x-1">
