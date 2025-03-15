@@ -46,7 +46,11 @@ const GalleryPage = () => {
   return (
     <div>
       <SpaceAfterNavbar />
-      <SectionHeaderWithImage title="Gallery" imageUrl="/galleryHeader.jpg" />
+      <SectionHeaderWithImage
+        title="Gallery"
+        imageUrl="/galleryHeader.jpg"
+        height="96"
+      />
 
       {/* Gallery Grid */}
       <div className="container mx-auto p-4">
