@@ -1,8 +1,8 @@
-import SectionHeaderWithImage from "@/components/DashboardComponents/shared/SectionHeaderWithImage";
-import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
 import { GalleryItem } from "@/types/galleryItemType";
 import React from "react";
 import GalleryCard from "@/components/cards/GalleryCard";
+import SpaceAfterNavbar from "@/components/shared/SpaceAfterNavbar";
+import SectionHeaderWithImage from "@/components/shared/SectionHeaderWithImage";
 
 const GalleryPage = () => {
   const galleryData: GalleryItem[] = [
@@ -49,10 +49,8 @@ const GalleryPage = () => {
       <SectionHeaderWithImage
         title="Gallery"
         imageUrl="/galleryHeader.jpg"
-        height="96"
+        height="80"
       />
-
-      {/* Gallery Grid */}
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {galleryData.map((item, index) => (

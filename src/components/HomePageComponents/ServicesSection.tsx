@@ -24,12 +24,9 @@ const ServicesSection = async () => {
     const categories: Category[] = await res.json();
 
     return (
-      <div>
+      <div id="services">
         <SectionHeading title="Our Service Categories" />
-        <div
-          id="services"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
           {categories.map((category: Category) => (
             <CategoryCard
               key={category.category}
