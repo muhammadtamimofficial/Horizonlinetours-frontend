@@ -99,7 +99,6 @@ export default function CreateBlogModal({
         description: formData.description,
         createdAt: new Date().toISOString(),
       };
-      console.log(blogData);
 
       const response = await createBlog(blogData);
 

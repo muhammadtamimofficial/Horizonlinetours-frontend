@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"; // Import useRouter from next/navig
 
 import { JwtPayload } from "jwt-decode";
 import { getUserByEmail } from "@/utils/actions/getUserByEmail";
+import PageLoader from "@/components/loading/PageLoader";
 
 // Extend JwtPayload to include the `email` property
 export interface CustomJwtPayload extends JwtPayload {
@@ -60,7 +61,7 @@ const Layout = ({
   }, [loading, user, userInDb, router]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <PageLoader />;
   }
 
   // If no user is found in local storage or the user does not exist in the database
