@@ -1,10 +1,14 @@
 "use client";
+import useGetCurrentUser from "@/app/hooks/useGetCurrentUser";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
-  const role: string = "admin";
+
+  // get current user
+  const { currentUser } = useGetCurrentUser();
+  const role: string | undefined = currentUser?.role;
 
   const sidebarLinks = [
     { href: "/", label: "Home" },
