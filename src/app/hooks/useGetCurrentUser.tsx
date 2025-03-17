@@ -20,8 +20,7 @@ const useGetCurrentUser = () => {
           const fetchedUser = await getUserByEmail(userEmail);
           setCurrentUser(fetchedUser);
         } else {
-          console.error("User email is undefined");
-          toast.error("User email not found in token");
+          setCurrentUser(null);
         }
       } catch (err) {
         console.error("Failed to fetch user data:", err);
