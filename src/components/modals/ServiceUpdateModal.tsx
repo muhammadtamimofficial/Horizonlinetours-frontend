@@ -1,3 +1,4 @@
+"use client";
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import {
@@ -11,6 +12,12 @@ import { Service } from "@/types/servicesType";
 import { updateService } from "@/utils/actions/updateService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import ImageUploader from "../ImageUpload/ImageUploader";
+import {
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import Image from "next/image";
 
 interface ServiceUpdateModalProps {
   id: string;
@@ -33,7 +40,8 @@ export default function ServiceUpdateModal({
     category: "",
   });
 
-  // calling router function to refresh
+  const [imageUrl, setImageUrl] = useState<string>(""); // Image upload URL state
+
   const router = useRouter();
 
   // Fill form with service details if available
@@ -46,6 +54,7 @@ export default function ServiceUpdateModal({
         price: service.price,
         category: service.category,
       });
+      setImageUrl(service.image); // Set existing image
     }
   }, [service]);
 
@@ -61,32 +70,35 @@ export default function ServiceUpdateModal({
     }));
   };
 
-  // updating service functionality
+  // Handle successful image upload
+  const handleUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
+    const uploadedUrl = (result.info as CloudinaryUploadWidgetInfo)?.secure_url;
+    setImageUrl(uploadedUrl);
+    setFormData((prevData) => ({
+      ...prevData,
+      image: uploadedUrl, // Update formData with new image URL
+    }));
+  };
+
+  // Update service functionality
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await updateService(id, formData);
+      const updatedData = { ...formData, image: imageUrl }; // Ensure latest image URL is included
+      const response = await updateService(id, updatedData);
+
       if (response?.acknowledged === true) {
-        toast.success("Service Update Successfully");
-        setFormData({
-          title: "",
-          image: "",
-          description: "",
-          price: "",
-          category: "",
-        });
+        toast.success("Service Updated Successfully");
         router.refresh();
         setIsUpdateModalOpen(false);
       } else {
-        toast.error("Failed to create service");
+        toast.error("Failed to update service");
       }
     } catch (error) {
-      toast.error("An error occurred while creating the service");
+      toast.error("An error occurred while updating the service");
       console.error(error);
     }
   };
-
-  // modal closing function
 
   const closeModal = () => {
     setIsUpdateModalOpen(false);
@@ -110,7 +122,7 @@ export default function ServiceUpdateModal({
                   <MdCancel
                     size={30}
                     className="text-gray-600 cursor-pointer hover:text-gray-800"
-                    onClick={closeModal} // Close modal on click
+                    onClick={closeModal}
                   />
                 </div>
 
@@ -121,13 +133,46 @@ export default function ServiceUpdateModal({
                   Update Service
                 </DialogTitle>
 
-                {/* -----------main works starts ---------- */}
+                {/* image upload  */}
+                <div className="flex flex-col space-y-2">
+                  <label
+                    htmlFor="image"
+                    className="text-lg font-medium text-gray-600"
+                  >
+                    Upload Image
+                  </label>
+                  <ImageUploader
+                    onSuccess={handleUploadSuccess}
+                    buttonText="Upload Image"
+                    imageUploadbuttonStyle={{
+                      padding: "10px 20px",
+                      border: "1px solid gray",
+                      borderRadius: "5px",
+                      color: "black",
+                      cursor: "pointer",
+                      width: "100%",
+                    }}
+                  />
+                  {imageUrl && (
+                    <div className="relative w-full h-40">
+                      <Image
+                        src={imageUrl}
+                        alt="Uploaded Image"
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-md"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="flex flex-col space-y-2">
+                  <div>
+                    <div className="my-2 w-full">
                       <label
                         htmlFor="title"
-                        className="text-lg font-medium text-gray-600"
+                        className="text-lg mt-2 font-medium text-gray-600"
                       >
                         Title
                       </label>
@@ -139,25 +184,7 @@ export default function ServiceUpdateModal({
                         onChange={handleChange}
                         placeholder="Enter service title"
                         required
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div className="flex flex-col space-y-2">
-                      <label
-                        htmlFor="image"
-                        className="text-lg font-medium text-gray-600"
-                      >
-                        Image URL
-                      </label>
-                      <input
-                        type="text"
-                        id="image"
-                        name="image"
-                        value={formData.image}
-                        onChange={handleChange}
-                        placeholder="Enter image URL"
-                        required
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="px-4 py-2 border w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -176,9 +203,10 @@ export default function ServiceUpdateModal({
                       onChange={handleChange}
                       placeholder="Enter service description"
                       required
-                      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="px-4 py-2 h-36 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
+
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="price"
@@ -197,6 +225,7 @@ export default function ServiceUpdateModal({
                       className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
+
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="category"
@@ -238,12 +267,11 @@ export default function ServiceUpdateModal({
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:cursor-pointer hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     Update Service
                   </button>
                 </form>
-                {/*------------ Main work ends -------------- */}
               </DialogPanel>
             </TransitionChild>
           </div>

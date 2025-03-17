@@ -12,6 +12,11 @@ import toast from "react-hot-toast";
 import useGetCurrentUser from "@/app/hooks/useGetCurrentUser";
 import { createBlog } from "@/utils/actions/createBlog";
 import { Blog } from "@/types/BlogType";
+import ImageUploader from "../ImageUpload/ImageUploader";
+import {
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 
 interface FormCreatorModalProps {
   isUpdateModalOpen: boolean;
@@ -35,6 +40,26 @@ export default function CreateBlogModal({
     image: "",
     description: "",
   });
+
+  // image url
+
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  // image image url set
+
+  const handleUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
+    setImageUrl((result.info as CloudinaryUploadWidgetInfo)?.secure_url);
+  };
+
+  // image upload button style
+  const imageUploadbuttonStyle = {
+    padding: "10px 20px",
+    border: "1px solid gray",
+    borderRadius: "5px",
+    color: "black",
+    cursor: "pointer",
+    width: "100%",
+  };
 
   useEffect(() => {
     if (currentUser) {
@@ -61,13 +86,16 @@ export default function CreateBlogModal({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!imageUrl) {
+      return toast.error("Upload An Image");
+    }
     try {
       const blogData: Blog = {
         creatorName: formData.creatorName,
         creatorEmail: formData.creatorEmail,
         creatorImage: formData.creatorImage,
         title: formData.title,
-        image: formData.image,
+        image: imageUrl,
         description: formData.description,
         createdAt: new Date().toISOString(),
       };
@@ -211,18 +239,15 @@ export default function CreateBlogModal({
                       htmlFor="image"
                       className="text-lg font-medium text-gray-600"
                     >
-                      Image URL
+                      Upload Image
                     </label>
-                    <input
-                      type="text"
-                      id="image"
-                      name="image"
-                      value={formData.image}
-                      onChange={handleChange}
-                      placeholder="Enter image URL"
-                      required
-                      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                    <div>
+                      <ImageUploader
+                        onSuccess={handleUploadSuccess}
+                        buttonText="Upload"
+                        imageUploadbuttonStyle={imageUploadbuttonStyle}
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col space-y-2">

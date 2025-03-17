@@ -49,7 +49,7 @@ const GalleryPage = () => {
       <SectionHeaderWithImage
         title="Gallery"
         imageUrl="/galleryHeader.jpg"
-        height="80"
+        height="64"
       />
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

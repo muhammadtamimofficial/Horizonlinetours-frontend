@@ -7,6 +7,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/utils/actions/createUser";
 import { User } from "@/types/userType";
+import ImageUploader from "@/components/ImageUpload/ImageUploader";
+import {
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 
 export type AuthUser = {
   username: string;
@@ -21,15 +26,37 @@ const RegisterPage = () => {
     password: "",
   });
 
+  // image url
+
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  // image upload button style
+  const imageUploadbuttonStyle = {
+    padding: "10px 20px",
+    border: "1px solid gray",
+    borderRadius: "5px",
+    color: "black",
+    cursor: "pointer",
+    width: "100%",
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const router = useRouter();
 
+  // image upload function
+
+  const handleUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
+    setImageUrl((result.info as CloudinaryUploadWidgetInfo)?.secure_url);
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    if (!imageUrl) {
+      return toast.error("Upload An Image");
+    }
     try {
       const res = await registerUser(formData);
       console.log(res);
@@ -38,7 +65,9 @@ const RegisterPage = () => {
         const newUser: User = {
           username: formData.username,
           email: formData.email,
-          image: "https://via.placeholder.com/150",
+          image:
+            imageUrl ||
+            "https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png",
         };
 
         const userRes = await createUser(newUser);
@@ -101,6 +130,17 @@ const RegisterPage = () => {
                 placeholder="Email"
                 className="w-full p-3 border border-gray-300 rounded "
                 required
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Upload Image
+              </label>
+              <ImageUploader
+                onSuccess={handleUploadSuccess}
+                buttonText="Upload"
+                imageUploadbuttonStyle={imageUploadbuttonStyle}
               />
             </div>
 
