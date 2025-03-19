@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter, usePathname } from "next/navigation"; // Import useRouter and usePathname
 import { motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
@@ -21,8 +21,9 @@ const sidebarLinks = [
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   const router = useRouter();
+  const pathname = usePathname(); // Get the current pathname
 
-  // Scroll to section if query parameter exists
+  // Scroll to section if hash exists in the URL
   useEffect(() => {
     const sectionId = window.location.hash.substring(1);
     if (sectionId) {
@@ -31,9 +32,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
         if (section) {
           section.scrollIntoView({ behavior: "smooth" });
         }
-      }, 300); // Delay to ensure the section is available
+      }, 500); // Adjust delay as needed
     }
-  }, []);
+  }, [pathname]); // Re-run effect when pathname changes
 
   const handleScrollToSection = (id: string) => {
     if (window.location.pathname === "/") {

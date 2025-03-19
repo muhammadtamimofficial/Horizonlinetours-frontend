@@ -11,7 +11,7 @@ const DashboardSidebar = () => {
   const role: string | undefined = currentUser?.role;
 
   const sidebarLinks = [
-    { href: "/", label: "Home" },
+    { href: "/", label: "Home Page" },
     { href: "/dashboard", label: "Profile" },
   ];
 
