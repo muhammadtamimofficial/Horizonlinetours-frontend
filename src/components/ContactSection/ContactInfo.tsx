@@ -14,7 +14,7 @@ const ContactInfo: React.FC = () => {
     {
       icon: <FaPhoneAlt />,
       title: "Phone Number",
-      content: "+017462343",
+      content: "(242)813-6965",
     },
     {
       icon: <FaEnvelope />,
@@ -24,12 +24,12 @@ const ContactInfo: React.FC = () => {
     {
       icon: <FaMapMarkerAlt />,
       title: "Location",
-      content: "123 Main Street, City, Country",
+      content: "Nassau, bahamas",
     },
     {
       icon: <FaClock />,
       title: "Working Hours",
-      content: "Mon - Fri: 9:00 AM - 5:00 PM",
+      content: "Monday - Saturday 9 - 5",
     },
   ];
 
