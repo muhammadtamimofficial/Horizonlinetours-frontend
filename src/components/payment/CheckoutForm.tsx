@@ -10,13 +10,19 @@ import {
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Country, State, City } from "country-state-city"; // Import the country-state-city package
+import { Booking } from "@/types/BookingType";
 
 interface CheckoutFormProps {
   price: string;
   serviceId: string;
+  serviceName: string;
 }
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({ price, serviceId }) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  price,
+  serviceId,
+  serviceName,
+}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -120,16 +126,18 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ price, serviceId }) => {
       const selectedState = states.find((s) => s.isoCode === state);
       const selectedCity = cities.find((c) => c.name === city);
 
-      const booking = {
+      const booking: Booking = {
         email,
         phone,
         first_name: firstName,
         last_name: lastName,
         service_id: serviceId,
+        service_name: serviceName,
         amount: totalPrice,
         date: new Date().toISOString(), // Ensure the date is in ISO string format
         transaction_id: paymentIntent.id,
         status: "paid",
+        admin_confirmation: "pending",
         country: selectedCountry ? selectedCountry.name : country, // Save full country name
         state: selectedState ? selectedState.name : state, // Save full state name
         city: selectedCity ? selectedCity.name : city, // Save full city name

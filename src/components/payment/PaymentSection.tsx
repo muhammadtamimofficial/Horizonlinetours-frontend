@@ -7,6 +7,7 @@ import CheckoutForm from "./CheckoutForm";
 interface PaymentSectionProps {
   servicePrice: string;
   serviceId: string;
+  serviceName: string;
 }
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK as string);
@@ -14,10 +15,15 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK as string);
 const PaymentSection: React.FC<PaymentSectionProps> = ({
   servicePrice,
   serviceId,
+  serviceName,
 }) => {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm price={servicePrice} serviceId={serviceId} />
+      <CheckoutForm
+        price={servicePrice}
+        serviceId={serviceId}
+        serviceName={serviceName}
+      />
     </Elements>
   );
 };

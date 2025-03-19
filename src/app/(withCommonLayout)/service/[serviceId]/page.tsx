@@ -34,6 +34,7 @@ const ServiceDetailsPage = async ({ params }: PageProps) => {
             <PaymentSection
               servicePrice={service.price}
               serviceId={service._id}
+              serviceName={service.title}
             />
           </div>
         </div>
