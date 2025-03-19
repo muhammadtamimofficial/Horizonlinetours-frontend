@@ -20,7 +20,8 @@ const DashboardSidebar = () => {
       { href: "/create-service", label: "Create Service" },
       { href: "/all-services", label: "All Services" },
       { href: "/create-blog", label: "Blogs" },
-      { href: "/add-gallery", label: "Gallery" }
+      { href: "/add-gallery", label: "Gallery" },
+      { href: "/user-orders", label: "User Orders" }
     );
   } else if (role === "user") {
     sidebarLinks.push({ href: "/user-orders", label: "My Orders" });
