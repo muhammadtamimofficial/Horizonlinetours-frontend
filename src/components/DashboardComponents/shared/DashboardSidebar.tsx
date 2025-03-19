@@ -19,6 +19,7 @@ const DashboardSidebar = () => {
     sidebarLinks.push(
       { href: "/create-service", label: "Create Service" },
       { href: "/all-services", label: "All Services" },
+      { href: "/user-messages", label: "User Messages" },
       { href: "/create-blog", label: "Blogs" },
       { href: "/add-gallery", label: "Gallery" },
       { href: "/user-orders", label: "User Orders" }
