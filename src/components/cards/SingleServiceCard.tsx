@@ -19,15 +19,17 @@ const SingleServiceCard: React.FC<SingleServiceCardProps> = ({ service }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [serviceDetails, setServiceDetails] = useState<Service | null>(null);
 
-  // using user router for refreshing the page
   const router = useRouter();
 
   // Fetching service details by ID
   const fetchServiceById = async (id: string) => {
     try {
-      console.log(id);
       const response = await fetch(`${baseUrl}/services/${id}`);
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`Failed to fetch service: ${response.statusText}`);
+      }
+      const textResponse = await response.text(); // Get raw response
+      const data = JSON.parse(textResponse); // Parse JSON manually
       setServiceDetails(data);
     } catch (error) {
       console.error("Failed to fetch service:", error);
@@ -35,7 +37,7 @@ const SingleServiceCard: React.FC<SingleServiceCardProps> = ({ service }) => {
     }
   };
 
-  // deleting service function
+  // Deleting service function
   const handleDelete = async () => {
     Swal.fire({
       title: "Are you sure?",
@@ -47,12 +49,17 @@ const SingleServiceCard: React.FC<SingleServiceCardProps> = ({ service }) => {
       confirmButtonText: "Confirm",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        if (_id) {
+        if (!_id) {
+          toast.error("Service ID is undefined.");
+          return;
+        }
+        try {
           await deleteService(_id);
           toast.success("Deleted Successfully");
           router.refresh();
-        } else {
-          console.error("Service ID is undefined");
+        } catch (error) {
+          console.error("Failed to delete service:", error);
+          toast.error("Failed to delete service.");
         }
       }
     });
@@ -60,10 +67,12 @@ const SingleServiceCard: React.FC<SingleServiceCardProps> = ({ service }) => {
 
   // Handling update button click and fetching service details by id
   const handleUpdateClick = () => {
-    if (_id) {
-      fetchServiceById(_id);
-      setIsUpdateModalOpen(true);
+    if (!_id) {
+      toast.error("Service ID is undefined.");
+      return;
     }
+    fetchServiceById(_id);
+    setIsUpdateModalOpen(true);
   };
 
   return (
@@ -101,7 +110,7 @@ const SingleServiceCard: React.FC<SingleServiceCardProps> = ({ service }) => {
       {/* Passing the id and serviceDetails to the ServiceUpdateModal */}
       <ServiceUpdateModal
         id={_id!}
-        service={serviceDetails}
+        service={serviceDetails} // Ensure service is not null
         isUpdateModalOpen={isUpdateModalOpen}
         setIsUpdateModalOpen={setIsUpdateModalOpen}
       />

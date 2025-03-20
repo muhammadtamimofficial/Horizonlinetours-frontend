@@ -11,13 +11,11 @@ export type Category = {
 const ServicesSection = async () => {
   try {
     // Fetch categories from the API
-    const res = await fetch(`${baseUrl}/getServicesCategories`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`${baseUrl}/getServicesCategories`);
 
     // Check if the response is successful
     if (!res.ok) {
-      throw new Error("Failed to fetch categories");
+      throw new Error(`Failed to fetch categories: ${res.statusText}`);
     }
 
     // Parse the response as an array of Category objects
@@ -39,7 +37,11 @@ const ServicesSection = async () => {
     );
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return <div>Failed to load categories. Please try again later.</div>;
+    return (
+      <div className="text-red-500 text-center py-8">
+        Failed to load categories. Please try again later.
+      </div>
+    );
   }
 };
 
