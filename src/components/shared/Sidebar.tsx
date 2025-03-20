@@ -27,12 +27,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   useEffect(() => {
     const sectionId = window.location.hash.substring(1);
     if (sectionId) {
-      setTimeout(() => {
+      const scrollToSection = () => {
         const section = document.getElementById(sectionId);
         if (section) {
           section.scrollIntoView({ behavior: "smooth" });
+        } else {
+          // If the section is not found, try again after a short delay
+          setTimeout(scrollToSection, 100);
         }
-      }, 500); // Adjust delay as needed
+      };
+
+      scrollToSection();
     }
   }, [pathname]); // Re-run effect when pathname changes
 

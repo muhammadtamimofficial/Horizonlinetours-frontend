@@ -18,7 +18,7 @@ const ProfilePage = () => {
               {/* Profile Image */}
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg relative">
                 <Image
-                  src={image || "/default-avatar.png"} // Fallback for missing image
+                  src={image || "Image"}
                   alt={username || "User"}
                   fill // Fill the container
                   className="object-cover" // Ensure the image covers the container
