@@ -22,15 +22,17 @@ const ServiceDetailsPage = async ({ params }: PageProps) => {
       <div>
         <SpaceAfterNavbar />
 
-        <h1 className="font-bold text-4xl text-center">{service.title}</h1>
-        <div className="flex flex-col md:flex-row gap-4">
+        <h1 className="font-bold text-2xl md:text-4xl text-center">
+          {service.title}
+        </h1>
+        <div className="flex flex-col md:flex-row gap-1 md:gap-4">
           <div className="mt-4">
             {/* service details */}
             <ServiceDetailsCard service={service} />
           </div>
 
           {/* payment section  */}
-          <div className="mt-4 w-full px-12 lg:px-96">
+          <div className="mt-4 w-full p-4 md:px-8 lg:p-12 lg:px-96">
             <PaymentSection
               servicePrice={service.price}
               serviceId={service._id}

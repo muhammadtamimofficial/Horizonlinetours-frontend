@@ -20,7 +20,7 @@ const BlogsPage = async () => {
         imageUrl="/blogHeader.jpg"
         height="52"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 md:p-8">
         {blogs &&
           blogs.map((blog: Blog) => {
             return <BlogCard key={blog._id} blog={blog} />;

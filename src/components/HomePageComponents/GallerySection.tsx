@@ -64,6 +64,11 @@ const GallerySection = () => {
           ))}
         </div>
       </Link>
+      <div className="mt-8 md:mt-12 text-center">
+        <Link href="/gallery" className="p-2 bg-green-500">
+          See All
+        </Link>
+      </div>
     </div>
   );
 };
