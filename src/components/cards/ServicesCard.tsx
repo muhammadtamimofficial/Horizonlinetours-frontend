@@ -28,7 +28,7 @@ const ServicesCard: React.FC<ServicesCardProps> = ({ service }) => {
           {title}
         </h1>
         <p className="font-extralight my-4">{description}</p>
-        <p className="text-center font-extralight text-[50px]">{price}</p>
+        <p className="text-center font-extralight text-[50px]">{`${price}$`}</p>
         <div className="text-center mt-2">
           <Link
             href={`/service/${_id}`}
