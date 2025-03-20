@@ -18,10 +18,10 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ title }) => {
         priority
       />
       <div className="absolute inset-0 flex flex-col justify-center items-center bg-gradient-to-tr from-gray-900/70 to-gray-900/70 text-white p-10">
-        <h1 className="text-4xl mb-4 flex items-center">
+        <h1 className="text-2xl md:text-4xl mb-4 flex items-center">
           <span className="text-green-400">Category</span>
           <RxDividerVertical />
-          <span className="text-4xl">{title}</span>
+          <span className="text-2xl md:text-4xl">{title}</span>
         </h1>
       </div>
     </div>

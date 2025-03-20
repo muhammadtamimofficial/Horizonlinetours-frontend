@@ -31,11 +31,11 @@ const useGetCurrentUser = () => {
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    if (currentUser) {
-      console.log("user form dashboard", currentUser);
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     console.log("user form dashboard", currentUser);
+  //   }
+  // }, [currentUser]);
 
   return { currentUser };
 };
