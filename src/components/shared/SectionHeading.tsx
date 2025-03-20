@@ -1,65 +1,89 @@
 "use client";
-import React from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SectionHeadingProps {
   title: string;
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({ title }) => {
-  // Split the title into individual characters
   const titleCharacters = title.split("");
+  const [displayedText, setDisplayedText] = useState("");
+  const [typing, setTyping] = useState(true);
+  const [charIndex, setCharIndex] = useState(0);
+  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Animation controls
-  const controls = useAnimationControls();
+  useEffect(() => {
+    const typeOrErase = () => {
+      timeoutIdRef.current = setTimeout(
+        () => {
+          if (typing) {
+            if (charIndex < titleCharacters.length) {
+              setDisplayedText((prev) => prev + titleCharacters[charIndex]);
+              setCharIndex((prev) => prev + 1);
+            } else {
+              setTimeout(() => {
+                setTyping(false);
+                setCharIndex(titleCharacters.length - 1);
+                typeOrErase();
+              }, 500);
+              return;
+            }
+          } else {
+            if (charIndex >= 0) {
+              setDisplayedText((prev) => prev.slice(0, prev.length - 1));
+              setCharIndex((prev) => prev - 1);
+            } else {
+              setTimeout(() => {
+                setTyping(true);
+                setCharIndex(0);
+                typeOrErase();
+              }, 500);
+              return;
+            }
+          }
+          typeOrErase();
+        },
+        typing ? 80 : 40
+      );
+    };
 
-  // Function to start the infinite loop
-  React.useEffect(() => {
-    const animate = async () => {
-      while (true) {
-        await controls.start("hidden"); // Hide from left to right
-        await controls.start("visible"); // Show from right to left
+    typeOrErase();
+
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
       }
     };
-    animate();
-  }, [controls]);
+  }, [charIndex, titleCharacters, typing]);
+
+  const estimatedCharWidth = 20; // Adjust this value based on your font and styling
+  const containerWidth = titleCharacters.length * estimatedCharWidth;
 
   return (
     <div className="my-6 md:my-12 text-center">
       <h1 className="text-2xl md:text-4xl">
-        {/* Static border */}
         <span className="border-l-[25px] border-blue-500 pl-4">
-          {/* Animate each character */}
           <motion.span
-            style={{ display: "inline-flex" }}
-            initial="visible"
-            animate={controls}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.05, // Delay between each character
-                  staggerDirection: 1, // Left to right
-                },
-              },
-              hidden: {
-                transition: {
-                  staggerChildren: 0.05, // Delay between each character
-                  staggerDirection: -1, // Right to left
-                },
-              },
+            style={{
+              display: "inline-flex",
+              width: `${containerWidth}px`,
+              overflow: "hidden", // Prevent characters from overflowing
             }}
           >
-            {titleCharacters.map((char, index) => (
-              <motion.span
-                key={index}
-                variants={{
-                  visible: { opacity: 1 },
-                  hidden: { opacity: 0 },
-                }}
-              >
-                {char}
-              </motion.span>
-            ))}
+            <AnimatePresence initial={false}>
+              {displayedText.split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </AnimatePresence>
           </motion.span>
         </span>
       </h1>
