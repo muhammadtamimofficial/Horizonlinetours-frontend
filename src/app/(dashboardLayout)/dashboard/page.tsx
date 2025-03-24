@@ -18,7 +18,10 @@ const ProfilePage = () => {
               {/* Profile Image */}
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg relative">
                 <Image
-                  src={image || "Image"}
+                  src={
+                    image ||
+                    "https://st2.depositphotos.com/1007566/11541/v/950/depositphotos_115416492-stock-illustration-avatar-business-man-vector-graphic.jpg"
+                  }
                   alt={username || "User"}
                   fill // Fill the container
                   className="object-cover" // Ensure the image covers the container

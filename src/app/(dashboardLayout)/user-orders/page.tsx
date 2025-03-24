@@ -1,6 +1,8 @@
 import BookingsSection from "@/components/DashboardComponents/BookingsSection";
 import { baseUrl } from "@/utils/baseUrl";
 
+export const dynamic = "force-dynamic"; // Force dynamic rendering
+
 const UserOrdersPage = async () => {
   try {
     const res = await fetch(`${baseUrl}/bookings`);

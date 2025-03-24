@@ -20,7 +20,7 @@ const AboutSection = () => {
         <h1 className="text-center font-bold text-2xl text-blue-400 md:text-[60px] mb-2 md:mb-6">
           Welcome to Horizonetours
         </h1>
-        <p className="text-sm md:text-base leading-relaxed">
+        <p className="text-sm md:text-base leading-relaxed text-justify px-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
           consequatur ipsum, fuga dicta dignissimos, perferendis asperiores
           laboriosam a minima libero delectus sed quis maxime nostrum voluptatum

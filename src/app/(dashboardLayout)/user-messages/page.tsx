@@ -1,25 +1,25 @@
-import AllServicesClientComponent from "@/components/DashboardComponents/AllServicesClientComponent";
-import { Service } from "@/types/servicesType";
+import MessagesSection from "@/components/DashboardComponents/MessagesSection";
+import { Message } from "@/types/messageType";
 import { baseUrl } from "@/utils/baseUrl";
 
 export const dynamic = "force-dynamic"; // Force dynamic rendering
 
 const AllServicesPage = async () => {
   try {
-    const res = await fetch(`${baseUrl}/services`, {
+    const res = await fetch(`${baseUrl}/messages`, {
       cache: "no-store", // Fetch fresh data on every request
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch services");
+      throw new Error("Failed to fetch Messages");
     }
 
-    const services: Service[] = await res.json();
+    const messages: Message[] = await res.json();
 
     return (
       <div>
         <div className="mt-4">
-          <AllServicesClientComponent services={services} />
+          <MessagesSection messages={messages} />
         </div>
       </div>
     );
