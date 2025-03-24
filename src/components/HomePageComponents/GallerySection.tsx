@@ -45,7 +45,7 @@ const GallerySection = () => {
       <Link href="/gallery" className="block">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryData.map((item, index) => (
+          {galleryData.slice(0,8).map((item, index) => (
             <div
               key={index}
               className="relative group rounded-lg overflow-hidden shadow-lg transition-transform transform cursor-pointer hover:scale-105"

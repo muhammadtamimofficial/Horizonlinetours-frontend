@@ -15,7 +15,6 @@ const AllServicesPage = async () => {
     }
 
     const textResponse = await res.text(); // Get the raw response as text
-    console.log("API Response:", textResponse); // Log the response
 
     let services: Service[] = [];
     try {

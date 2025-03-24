@@ -1,9 +1,16 @@
 "use client";
+import ImageUploader from "@/components/ImageUpload/ImageUploader";
 import { createService } from "@/utils/actions/createService";
-import React, { useState } from "react";
+import {
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 const CreateServicePage = () => {
+  // image url
+  const [imageUrl, setImageUrl] = useState<string>("");
   const [formData, setFormData] = useState({
     title: "",
     image: "",
@@ -11,6 +18,24 @@ const CreateServicePage = () => {
     price: "",
     category: "",
   });
+
+  // Update formData when imageUrl changes
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      image: imageUrl,
+    }));
+  }, [imageUrl]);
+
+  // style of upload button
+  const imageUploadbuttonStyle = {
+    padding: "10px 20px",
+    border: "1px solid gray",
+    borderRadius: "5px",
+    color: "black",
+    cursor: "pointer",
+    width: "100%",
+  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -22,6 +47,11 @@ const CreateServicePage = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  // handle upload success
+  const handleUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
+    setImageUrl((result.info as CloudinaryUploadWidgetInfo)?.secure_url);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,6 +67,7 @@ const CreateServicePage = () => {
           price: "",
           category: "",
         });
+        setImageUrl("");
       } else {
         toast.error("Failed to create service");
       }
@@ -52,8 +83,18 @@ const CreateServicePage = () => {
       <h1 className="text-3xl font-semibold text-center mb-6">
         Create Service
       </h1>
+      <div>
+        <label htmlFor="image" className="text-lg font-medium text-gray-700">
+          Service Image
+        </label>
+        <ImageUploader
+          onSuccess={handleUploadSuccess}
+          buttonText="Upload"
+          imageUploadbuttonStyle={imageUploadbuttonStyle}
+        />
+      </div>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="">
           <div className="flex flex-col space-y-2">
             <label htmlFor="title" className="text-lg font-medium">
               Title
@@ -65,21 +106,6 @@ const CreateServicePage = () => {
               value={formData.title}
               onChange={handleChange}
               placeholder="Enter service title"
-              required
-              className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-          <div className="flex flex-col space-y-2">
-            <label htmlFor="image" className="text-lg font-medium">
-              Image URL
-            </label>
-            <input
-              type="text"
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              placeholder="Enter image URL"
               required
               className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -127,18 +153,10 @@ const CreateServicePage = () => {
             className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">Select a category</option>
-            <option value="Luxury Island Charters">
-              Luxury Island Charters
-            </option>
-            <option value="Fishing Charters">Fishing Charters</option>
-            <option value="Jet Ski Adventures">Jet Ski Adventures</option>
-            <option value="WaterToys Rental">WaterToys Rental</option>
-            <option value="Transportation Services">
-              Transportation Services
-            </option>
-            <option value="Adventure & Hiking">Adventure & Hiking</option>
-            <option value="Beach & Relaxation">Beach & Relaxation</option>
-            <option value="Cultural & Heritage">Cultural & Heritage</option>
+            <option value="Swimming Pigs">Swimming Pigs</option>
+            <option value="Private tours">Private tours</option>
+            <option value="Sightseeing tours">Sightseeing tours</option>
+            <option value="Wedding group tours">Wedding group tours</option>
           </select>
         </div>
         <button

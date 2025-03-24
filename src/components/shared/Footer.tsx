@@ -79,7 +79,7 @@ const Footer = () => {
             <h1 className="text-2xl md:text-4xl mb-4 text-center md:text-left">
               About The Company
             </h1>
-            <p className="text-sm md:text-base text-center md:text-left">
+            <p className="text-sm md:text-base text-justify">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Perspiciatis suscipit tenetur aperiam temporibus doloremque dolore
               quisquam deleniti eius nulla facere, reiciendis magni? Culpa

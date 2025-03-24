@@ -3,9 +3,9 @@ import CreateBlogModal from "@/components/modals/CreateBlogModal";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Blog } from "@/types/BlogType";
-import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { baseUrl } from "@/utils/baseUrl";
 
 const CreateBlogPage = () => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -14,7 +14,7 @@ const CreateBlogPage = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch(`${baseUrl}/blogs`, { cache: "no-store" });
+      const res = await fetch(`${baseUrl}/blogs`);
       const data: Blog[] = await res.json();
       setBlogs(data);
     } catch (error) {

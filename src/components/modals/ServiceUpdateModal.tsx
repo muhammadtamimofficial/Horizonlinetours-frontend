@@ -242,25 +242,13 @@ export default function ServiceUpdateModal({
                       className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">Select a category</option>
-                      <option value="Luxury Island Charters">
-                        Luxury Island Charters
+                      <option value="Swimming Pigs">Swimming Pigs</option>
+                      <option value="Private tours">Private tours</option>
+                      <option value="Sightseeing tours">
+                        Sightseeing tours
                       </option>
-                      <option value="Fishing Charters">Fishing Charters</option>
-                      <option value="Jet Ski Adventures">
-                        Jet Ski Adventures
-                      </option>
-                      <option value="WaterToys Rental">WaterToys Rental</option>
-                      <option value="Transportation Services">
-                        Transportation Services
-                      </option>
-                      <option value="Adventure & Hiking">
-                        Adventure & Hiking
-                      </option>
-                      <option value="Beach & Relaxation">
-                        Beach & Relaxation
-                      </option>
-                      <option value="Cultural & Heritage">
-                        Cultural & Heritage
+                      <option value="Wedding group tours">
+                        Wedding group tours
                       </option>
                     </select>
                   </div>
